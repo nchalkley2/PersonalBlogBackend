@@ -3,6 +3,8 @@
 #include <map>
 
 #include "crow/crow_all.h"
+#include "termcolor/termcolor.hpp"
+#include "mimetype/mimetype.hpp"
 
 //#include "pistache/endpoint.h"
 //#include "pistache/net.h"
