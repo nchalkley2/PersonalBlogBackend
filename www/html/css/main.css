@@ -1,0 +1,535 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+html {
+    background-color: #fafafa
+}
+
+body {
+    font-family: Open Sans, Arial;
+    color: #555;
+    font-size: 16px;
+    margin: 2em auto;
+    max-width: 800px;
+    padding: 1em;
+    line-height: 1.4;
+    text-align: justify
+}
+
+html.contrast body {
+    color: #151515
+}
+
+html.contrast blockquote {
+    color: #11151a
+}
+
+html.contrast blockquote:before {
+    color: #262626
+}
+
+html.contrast a {
+    color: #0051c9
+}
+
+html.contrast a:visited {
+    color: #7d013e
+}
+
+html.contrast span.wr {
+    color: #800
+}
+
+html.contrast span.mfw {
+    color: #117e69
+}
+
+html.inverted {
+    background-color: #050505
+}
+
+html.inverted body {
+    color: #aaa
+}
+
+html.inverted div#invmode {
+    color: #fff;
+    background-color: #000
+}
+
+html.inverted blockquote {
+    color: #dad0c7
+}
+
+html.inverted blockquote:before {
+    color: #bfbfbf
+}
+
+html.inverted a {
+    color: #07a
+}
+
+html.inverted a:visited {
+    color: #ac5a82
+}
+
+html.inverted span.wr {
+    color: #c0392b
+}
+
+html.inverted span.mfw {
+    color: #19b496
+}
+
+a {
+    color: #07a
+}
+
+a:visited {
+    color: #941352
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+span.citneed {
+    vertical-align: top;
+    font-size: .7em;
+    padding-left: .3em
+}
+
+small {
+    font-size: .4em
+}
+
+p.st {
+    margin-top: -1em
+}
+
+div.fancyPositioning div.picture-left {
+    float: left;
+    width: 40%;
+    overflow: hidden;
+    margin-right: 1em
+}
+
+div.fancyPositioning div.picture-left img {
+    width: 100%
+}
+
+div.fancyPositioning div.picture-left p.caption {
+    font-size: .7em
+}
+
+div.fancyPositioning div.tleft {
+    float: left;
+    width: 55%
+}
+
+div.fancyPositioning div.tleft p:first-child {
+    margin-top: 0
+}
+
+div.fancyPositioning:after {
+    display: block;
+    content: "";
+    clear: both
+}
+
+ul li img {
+    height: 1em
+}
+
+blockquote {
+    color: #456;
+    margin-left: 0;
+    margin-top: 2em;
+    margin-bottom: 2em
+}
+
+blockquote span {
+    float: left;
+    margin-left: 1rem;
+    padding-top: 1rem
+}
+
+blockquote author {
+    display: block;
+    clear: both;
+    font-size: .6em;
+    margin-left: 2.4rem;
+    font-style: oblique
+}
+
+blockquote author:before {
+    content: "- ";
+    margin-right: 1em
+}
+
+blockquote:before {
+    font-family: Times New Roman, Times, Arial;
+    color: #666;
+    content: open-quote;
+    font-size: 2.2em;
+    font-weight: 600;
+    float: left;
+    margin-top: 0;
+    margin-right: .2rem;
+    width: 1.2rem
+}
+
+blockquote:after {
+    content: "";
+    display: block;
+    clear: both
+}
+
+@media screen and (max-width:500px) {
+    body {
+        text-align: left
+    }
+    div.fancyPositioning div.picture-left,
+    div.fancyPositioning div.tleft {
+        float: none;
+        width: inherit
+    }
+    blockquote span {
+        width: 80%
+    }
+    blockquote author {
+        padding-top: 1em;
+        width: 80%;
+        margin-left: 15%
+    }
+    blockquote author:before {
+        content: "";
+        margin-right: inherit
+    }
+}
+
+span.visited {
+    color: #941352
+}
+
+span.visited-maroon {
+    color: #85144b
+}
+
+span.wr {
+    color: #c0392b;
+    font-weight: 600;
+    text-decoration: underline
+}
+
+div#contrast {
+    color: #000;
+    top: 10px
+}
+
+div#contrast,
+div#invmode {
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    font-size: .8em;
+    text-decoration: underline;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+div#invmode {
+    color: #fff;
+    background-color: #000;
+    top: 34px;
+    padding: 2px 5px
+}
+
+span.sb {
+    color: #00e
+}
+
+span.sb,
+span.sv {
+    cursor: not-allowed
+}
+
+span.sv {
+    color: #551a8b
+}
+
+span.foufoufou {
+    color: #444;
+    font-weight: 700
+}
+
+span.foufoufou:before {
+    content: "";
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    margin-left: .2em;
+    margin-right: .2em;
+    background-color: #444
+}
+
+span.fivfivfiv {
+    color: #555;
+    font-weight: 700
+}
+
+span.fivfivfiv:before {
+    content: "";
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    margin-left: .2em;
+    margin-right: .2em;
+    background-color: #555
+}
+
+span.mfw {
+    color: #16a085
+}
+
+a.kopimi,
+a.kopimi img.kopimi {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+a.kopimi img.kopimi {
+    height: 2em
+}
+
+p.fakepre {
+    font-family: monospace;
+    font-size: .9em
+}
+
+
+
+/* Custom shit */
+@import url('https://fonts.googleapis.com/css?family=Bellefair');
+@import url('https://fonts.googleapis.com/css?family=Gentium+Book+Basic');
+
+html
+{
+	//background: #EEE;
+	//background: url(https://i.imgur.com/rRLs7q4.png) fixed repeat top rgba(200, 200, 200, 0.1);
+	//background: url(../../../img/tile1.png) fixed repeat top rgba(200, 200, 200, 1.0);
+	//background: url(../../../img/grid.png) fixed repeat top rgba(200, 200, 200, 1.0);
+	background: url(https://apps.ubuntu.com/assets/light/images/body_bg.png) fixed repeat top;
+	//background: url(../../../img/wallhaven-502476.png) fixed repeat top rgba(200, 200, 200, 1.0);
+	//background: url(../../../img/davison_wireframe.png) fixed repeat top rgba(200, 200, 200, 1.0);
+	//background: url(http://www.designbolts.com/wp-content/uploads/2012/12/Grid-White-Seamless-Pattern.jpg) fixed repeat top rgba(200, 200, 200, 1.0);
+	//background: url(http://2.bp.blogspot.com/_hCTMUHiR6Vg/TIz0gW4-TDI/AAAAAAAAAIk/Xqay5y6bP_k/s1600/dev_measurewall01a1.jpg) fixed repeat #EEE;
+	//background: url(../../../img/website.png) repeat;
+}
+
+body {
+    font-family: Open Sans, Arial;
+    color: #555;
+    font-size: 16px;
+    margin: 0px 0px 0px 0px;
+    max-width: none;
+    padding: 0px 0px 0px 0px;
+    line-height: 1.4;
+    text-align: left;
+}
+
+
+
+div.sidebar
+{
+	background-color: #fff;
+	float: left;
+    margin-right: -100%;
+    position: fixed;
+    width: 200px;
+	height: 100%;
+	z-index: 10;
+}
+
+div.sidebar-content
+{
+	min-height: 0px;
+	padding: 0px;
+}
+
+div.content
+{
+	z-index: 1;
+	display: block;
+    float: left;
+    //margin-left: 29.4118%;
+    width: 100%;
+}
+
+
+/* Post stuff */
+div.postcontainer
+{
+	margin: 2.8em auto;
+    max-width: 860px;
+}
+
+div.post
+{
+	vertical-align: middle;
+	background: #fff;
+	/*border: 1px solid #ddd;*/
+    /*border-radius: 8px; */
+    box-shadow: 0px 2px 2px #aaa;
+    margin: 2em auto;
+	z-index: 10;
+}
+
+div.post-text
+{
+	padding: 1em 3em 1em 3em;
+}
+
+
+div.title
+{
+	//text-align: center;
+	padding:1em 3em 1em 3em;
+}
+
+ul.titletable
+{
+	display: table;
+    width: 100%;
+    table-layout: fixed;
+	margin: 0;
+	padding: 0;
+}
+
+li.tablecell
+{
+	display: table-cell;
+	list-style-type: none;
+	vertical-align: middle;
+}
+
+a.title
+{
+	text-decoration: none;
+	color: none;
+}
+
+h.titletext
+{
+	font-family:'Gentium Book Basic', serif;
+	font-size: 3em;
+	color: #555;
+}
+
+
+h1, h2, h3
+{
+	font-family: 'Gentium Book Basic', serif;
+	font-weight: normal;
+}
+
+hr
+{
+	background-color: rgba(51, 51, 51, 0.1);
+	margin-top: 1.6em;
+	margin-bottom: 1.6em;
+	border: 0;
+	height: 1px;
+}
+
+div.img-container
+{
+	padding: 1em 1em 1em 1em;
+}
+
+img.inline-text
+{
+	//padding: 0px;
+	padding: 0px;
+	width:100%;
+	height:auto;
+	border:0px;
+}
+
+div.titlelink
+{
+	/*
+	text-align:center;
+	margin:0em 0.5em 0em 0.5em;
+	float:right;
+	width:40px;
+	height:40px;
+	border-radius:50%;
+	box-shadow:0px 2px 2px #aaa;*/
+}
+
+.titlelink a
+{
+	text-align:center;
+	margin:0em 0.5em 0em 0.5em;
+	float:right;
+	width:40px;
+	height:40px;
+	border-radius:50%;
+	box-shadow:0px 2px 2px #aaa;
+}
+
+.titlelink a:hover
+{
+	text-align:center;
+	margin:0em 0.5em 0em 0.5em;
+	float:right;
+	width:40px;
+	height:40px;
+	border-radius:50%;
+	box-shadow:0px 3px 3px #aaa;
+}
+
+.titlelink a:active
+{
+	text-align:center;
+	margin:0em 0.5em 0em 0.5em;
+	float:right;
+	width:40px;
+	height:40px;
+	border-radius:50%;
+	box-shadow:0px 1px 1px #aaa;
+}
+
+p.fp
+{
+	word-spacing: 0.25em;
+}
+
+span.sntc
+{
+	word-spacing: 0;
+}
+
+div.reference
+{
+	font-size: 0.75em;
+}
+
+div.citation-div
+{
+    position: absolute;
+	background: #fff;
+    box-shadow: 0px 2px 2px #aaa;
+    padding: 0.5em 1em 0.5em 1em;
+    margin: 1em 1em 1em 1em;
+	z-index: 100;
+	font-size: 0.75em;
+}

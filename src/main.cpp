@@ -1,33 +1,37 @@
 //#include "pistache/pistache.h"
 // Argh
 #include "argh.h"
+#include "test.h"
 
 // Pistache
-#include "pistache/endpoint.h"
-#include "pistache/net.h"
+//#include "pistache/endpoint.h"
+//#include "pistache/net.h"
 
 #include <iostream>
 #include <string>
+#include <map>
+#include <functional>
 
-using namespace Pistache;
+//using namespace Pistache;
+using namespace std;
 
-static std::string htmlroot = "www/html";
+static string htmlroot = "www/html";
+static map<string, blog::pageFunc> pagemap;
 
-class HelloHandler : public Http::Handler {
+/*class HelloHandler : public Http::Handler {
 	public:
 
 	HTTP_PROTOTYPE(HelloHandler)
 
 	void onRequest(const Http::Request& request, Http::ResponseWriter response) {
-		std::cout << "request.resource(): " << request.resource() << std::endl;
-		//response.send(Http::Code::Ok, "Hello, World");
+		cout << "request.resource(): " << request.resource() << endl;
 		
-		std::string filepath = htmlroot + 
-			(request.resource().length() > 1 ? request.resource() : "/index.html");
+		string filepath = htmlroot + 
+			(request.resource().back() != '/' ? request.resource() : request.resource() + "index.html");
 
 		Http::serveFile(response, filepath.c_str());
 	}
-};
+};*/
 
 int main(int argc, char* argv[]) 
 {
@@ -37,13 +41,22 @@ int main(int argc, char* argv[])
 	int port;
 	cmdl({"-p", "--port"}, 80) >> port;
 
-	std::cout << "Running at: http://localhost:" << port << "/" << std::endl;
+    crow::SimpleApp app;
 
-	Pistache::Address addr(Pistache::Ipv4::any(), Pistache::Port(port));
+    CROW_ROUTE(app, "/")([](){
+        return "Hello world";
+    });
 
-    auto opts = Http::Endpoint::options().threads(1);
-    Http::Endpoint server(addr);
-    server.init(opts);
-    server.setHandler(std::make_shared<HelloHandler>());
-    server.serve();
+	//app.
+	app.loglevel(crow::LogLevel::Critical);
+    app.port(port).multithreaded().run();
+
+	//Pistache::Address addr(Pistache::Ipv4::any(), Pistache::Port(port));
+
+    //auto opts = Http::Endpoint::options().threads(1);
+    //Http::Endpoint server(addr);
+    //server.init(opts);
+    //server.setHandler(std::make_shared<HelloHandler>());
+    //server.serve();
 }
+
