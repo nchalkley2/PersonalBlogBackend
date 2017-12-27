@@ -6,9 +6,14 @@
 #include "termcolor/termcolor.hpp"
 #include "mimetype/mimetype.hpp"
 
-//#include "pistache/endpoint.h"
-//#include "pistache/net.h"
+#include <fstream>
 
+static std::string read_all(const std::string& filename)
+{
+	std::ifstream is(filename);
+    return {std::istreambuf_iterator<char>(is), 
+		std::istreambuf_iterator<char>()};
+}
 
 namespace blog
 {

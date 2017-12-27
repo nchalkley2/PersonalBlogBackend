@@ -78,7 +78,7 @@ namespace mimetype
 		};
 	}
 
-	std::string getMimeType(std::string filePath)
+	static std::string getMimeType(std::string filePath)
 	{
 		size_t periodpos;
 		if ((periodpos = filePath.find('.')) != std::string::npos
