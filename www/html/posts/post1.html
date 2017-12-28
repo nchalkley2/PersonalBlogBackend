@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<!-- favicon shit -->
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/manifest.json">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="theme-color" content="#ffffff">
+    
+	<title>Nick's Blog</title>
+
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+
+	<!-- JQuery lib-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+</head>
+
+<body>
+<div class="content">
+<div class="postcontainer">
+			<div class="post">
+				<div class="title">
+					<ul class="titletable">
+						<li class="tablecell"><a class="title" href="/"><h class="titletext">Nick's Blog</h></a></li>
+						<li class="tablecell" style="text-align: center;">
+							<div class="titlelink">
+								<a href="https://github.com/nchalkley2">
+									<img style="width: 32px;height: 32px;margin-top:4px;" src="/img/github.svg">
+								</a>
+
+								<a href="/resume.pdf">
+									<img style="width: 32px;height: 32px;margin-top:6px;" src="/img/cv.svg">
+								</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<hr style="margin-bottom:0; margin-top:0; height: 8px">
+			</div>
+		</div>
+<div class="postcontainer">
+	<div class="post">
+		<div class="post-text">
+			<h1>Creating the Davison Building Part 1</h1>
+		<a href="../../img/screenshot.jpg">
+			<img class="inline-text" src="../../img/screenshot.jpg" alt="Davison Building Render">
+		</a>
+
+		<hr>
+
+			<h2>Background</h2>
+			<p class="fp">
+				<span class="sntc">This post is intended to provide an introspection into my workflow when I created the Davison building for the 3D-Atlanta project<sup class="citation" href="#cite_note-1"><a href="#cite_note-1">[1]</a></sup> at Georgia State University.</span> <br> <br>
+
+				<span class="sntc">I selected the Davison building as my first 3D Atlanta model because it was a simple building made with a few repeating elements, and because I was familiar with the building.</span> 
+				<span class="sntc">The building is still standing and it's right outside the Peachtree Marta Station.</span> 
+				<span class="sntc">I pass by it daily.</span> 
+			</p>
+			
+			<hr>					
+
+			<h2>Gathering Reference</h2>
+			<p class="fp">
+				<span class="sntc">My SIF coworkers already gathered a lot of great reference from the 1920s, but I also visited the building in real life and shot reference images.</span> 
+				<span class="sntc">Our collection of reference images we gathered online left a lot of blind spots, and it didn't capture as much detail as I needed.</span> 
+				<span class="sntc">No one in the 1920s wanted to take a photo of the ass-end of the building, so I was lucky enough to be able to go out and do that myself.</span> 
+			</p>
+
+			<a href="../../img/reference.jpg">
+				<img class="inline-text" src="../../img/reference.jpg" alt="Reference Images">
+			</a>
+
+			<p class="fp">
+				<span class="sntc">One thing to note is that the building was actually expanded sometime after the 1920s.</span> 
+				<span class="sntc">You can see that the side of the building is present in the modern pictures but not in the earlier ones.</span> 
+			</p>
+
+
+			<hr>
+
+			<h2>Blockout</h2>
+			<p class="fp">
+				<span class="sntc">The blockout phase<sup class="citation" href="#cite_note-2"><a href="#cite_note-2">[2]</a></sup> is where I spent most of my time when I made the Davison building.</span> 
+				<span class="sntc">There's a few things that I tried to figure out in this phase: how to break building down into modular pieces, how to align the models to the grid, and how to match the models to the reference.</span> 
+				<span class="sntc">To align the blockout to the reference I first set a reference image as a background image in 3ds Max, then I created a camera in the scene and used 3ds Max's perspective matching tool to align the camera's view to the reference picture I chose.</span>
+			</p>
+			
+			<a href="../../img/perspective_match.jpg">
+				<img class="inline-text" src="../../img/perspective_match.jpg" alt="Perspective Matching to the Reference">
+			</a>
+
+			<p class="fp">
+				<span class="sntc">Next, I placed a box primitive in the scene that was roughly the size of the building.</span> 
+				<span class="sntc">I played around with dividing the box primitive into walls and modular windows, and I focused on finding a good size for the windows that would match both the reference and the grid.</span> 
+			</p>
+
+			<a href="../../img/window.jpg">
+				<img class="inline-text" src="../../img/window.jpg" alt="Matching the models to the reference and the grid">
+			</a>
+
+			<p class="fp">	
+				<span class="sntc">I settled on making the windows 512 units wide and 576 units tall.</span> 
+				<span class="sntc">This dictated the size of the rest of my models, as I aligned almost everything to 512x512 squares.</span> 
+				<span class="sntc">After I was satisfied with that, I finished blocking out the rest of the building.</span>	
+			</p>
+
+			<a href="../../img/blockout_finished.jpg">
+				<img class="inline-text" src="../../img/blockout_finished.jpg" alt="Finishing up the blockout">
+			</a>
+
+			<hr>
+
+			<h2>Detailing</h2>
+			<p class="fp">
+				<span class="sntc">After blocking out the scene, I started to detail the scene.</span> 
+				<span class="sntc">At this stage, I didn't care about the poly count of the models, as I was going for the maximum amount of detailing possible.</span> 
+				<span class="sntc">I was planning on either replacing the higher poly models or baking the detail into textures.</span>
+				<span class="sntc">For this phase, I used a lot of procedural modeling tools such as the Sweep Profile<sup class="citation" href="#cite_note-3"><a href="#cite_note-3">[3]</a></sup> plugin.</span>
+			</p>
+
+			<a href="../../img/detailing_finished.jpg">
+				<img class="inline-text" src="../../img/detailing_finished.jpg" alt="Finishing up the blockout">
+			</a>
+
+			<p class="fp">
+				<span class="sntc">I use the plugin heavily when working with architectural pieces, as it's good for breaking up building designs.</span> 
+				<span class="sntc">And, since it's a spline modifier, it's easy to jump back and forth between the spline and the high poly, detailed model.</span> 
+			</p>
+			
+			<a href="../../img/molding.jpg">
+				<img class="inline-text" src="../../img/molding.jpg" alt="Molding details">
+			</a>
+
+			<hr>
+			<h2>Part 2</h2>
+			<p class="fp">
+				<span class="sntc">In the next part, I explain my modular texturing workflow, which shows how I worked from a texture atlas to create highly detailed models and allow high texture reuse.</span> <br><br>
+				<span class="sntc">Coming soon...</span>
+			</p>
+
+			<hr>
+
+			<h2>References/End Notes</h2>
+			<div class="reference">
+				<ol>
+					<li id="cite_note-1">
+						<a href="http://sites.gsu.edu/innovation/2016/04/06/3d-atlanta/">GSU 3D-Atlanta Project</a>
+					</li>
+
+					<li id="cite_note-2">
+						<div>
+							<p class="fp"><span class="sntc">The blockout phase is (usually) the first phase in 3d modeling.</span> 
+							<span class="sntc">It is the phase where the artist works with very simple models or primitives to "block out" the scene.</span></p>
+							<p>Read more: <a href="https://www.3dartistonline.com/news/2014/11/maya-tutorial-block-out-3d-scenes/">Maya tutorial: Block out 3D scenes</a></p>
+						</div>
+					</li>
+
+					<li id="cite_note-3">
+						<a href="https://3d-kstudio.com/product/sweep-profile/">Sweep Profile plugin</a>
+					</li>
+				</ol>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+<script type="text/javascript" src="/js/citation.js"></script>
+</div>
+</body>
+
+</html>

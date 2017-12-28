@@ -420,11 +420,19 @@ li.tablecell
 	vertical-align: middle;
 }
 
-a.title
+a.title, a.title:link, a.title:visited
 {
 	text-decoration: none;
 	color: none;
 }
+
+a.unstyled, a.unstyled:link, a.unstyled:visited
+{
+	text-decoration: none;
+	color: #555;
+}
+
+
 
 h.titletext
 {

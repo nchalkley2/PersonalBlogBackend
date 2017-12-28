@@ -1,7 +1,5 @@
 #pragma once
-#include <functional>
-#include <map>
-
+#include "argh.h"
 #include "crow/crow_all.h"
 #include "termcolor/termcolor.hpp"
 #include "mimetype/mimetype.hpp"
@@ -18,9 +16,5 @@ static std::string read_all(const std::string& filename)
 namespace blog
 {
 	using namespace std;
-	//using namespace Pistache;
-
-	//using pageFunc = function<void(const Http::Request&, Http::ResponseWriter)>;
-	using pageFunc = function<void()>;
 };
 
