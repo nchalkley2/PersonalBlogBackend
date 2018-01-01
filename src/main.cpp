@@ -18,7 +18,7 @@ int main(int argc, char* argv[])
 	int port;
 	cmdl({"-p", "--port"}, 80) >> port;
 
-    crow::SimpleApp app;
+	crow::SimpleApp app;
 
 	SetupIndexPage(app);
 
@@ -26,6 +26,6 @@ int main(int argc, char* argv[])
 	auto LogHandler = std::make_shared<ExampleLogHandler>();
 	crow::logger::setHandler(LogHandler.get());
 
-    app.port(port).multithreaded().run();
+	app.port(port).multithreaded().run();
 }
 

@@ -6,6 +6,7 @@
 #include <functional>
 
 #include "boost/filesystem.hpp"
+#include <boost/algorithm/string/predicate.hpp>
 
 using namespace std;
 
@@ -19,19 +20,17 @@ void SetupIndexPage(crow::SimpleApp& app)
 
 		std::string posts;
 
-		path p(htmlroot + "/posts/meta/");
-		directory_iterator end_itr;
-		for (directory_iterator itr(p); itr != end_itr; ++itr)
+		path p(htmlroot + "/posts/");
+		for (const auto& itr : directory_iterator(p))
 		{
-			if (is_regular_file(itr->path())) 
+			if (is_regular_file(itr.path())) 
 			{
-            	// assign current file name to current_file and echo it out to the console.
-            	//string current_file = itr->path().string();
-            	//cout << current_file << endl;
-				posts += read_all(itr->path().string());
-        	}
+				// assign current file name to current_file and echo it out to the console.
+				if (boost::algorithm::ends_with(itr.path().string(), ".meta"))
+					posts += read_all(itr.path().string());
+			}
 		}
-		
+
 		crow::mustache::context x;
 		crow::mustache::template_t pageTemplate(read_all(htmlroot + "/index.html"));
 		x["posts"] = posts;
@@ -39,10 +38,10 @@ void SetupIndexPage(crow::SimpleApp& app)
 		return pageTemplate.render(x);
 	};
 
-    CROW_ROUTE(app, "/")
+	CROW_ROUTE(app, "/")
 	(indexFunc);
 
-    CROW_ROUTE(app, "/index.html")
+	CROW_ROUTE(app, "/index.html")
 	(indexFunc);
 
 	CROW_ROUTE(app, "/posts/<path>")
@@ -53,8 +52,8 @@ void SetupIndexPage(crow::SimpleApp& app)
 		res.body = read_all(htmlroot + "/posts/" + path);
 		res.end();
 	});
-	
-    CROW_ROUTE(app, "/css/<path>")
+
+	CROW_ROUTE(app, "/css/<path>")
 	([](const crow::request& req, crow::response& res, std::string path)
 	{
 		res.add_header("Content-Type", 
@@ -62,8 +61,8 @@ void SetupIndexPage(crow::SimpleApp& app)
 		res.body = read_all(htmlroot + "/css/" + path);
 		res.end();
 	});
-	
-    CROW_ROUTE(app, "/img/<path>")
+
+	CROW_ROUTE(app, "/img/<path>")
 	([](const crow::request& req, crow::response& res, std::string path)
 	{
 		res.add_header("Content-Type", 
@@ -72,7 +71,7 @@ void SetupIndexPage(crow::SimpleApp& app)
 		res.end();
 	});
 
-    CROW_ROUTE(app, "/js/<path>")
+	CROW_ROUTE(app, "/js/<path>")
 	([](const crow::request& req, crow::response& res, std::string path)
 	{
 		res.add_header("Content-Type", 
@@ -81,7 +80,7 @@ void SetupIndexPage(crow::SimpleApp& app)
 		res.end();
 	});
 
-    CROW_ROUTE(app, "/resume.pdf")
+	CROW_ROUTE(app, "/resume.pdf")
 	([](const crow::request& req, crow::response& res)
 	{
 		res.add_header("Content-Type", 

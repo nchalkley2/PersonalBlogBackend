@@ -4,6 +4,8 @@
 #include <string>
 #include <sstream>
 
+#include "boost/date_time/posix_time/posix_time.hpp"
+
 void ExampleLogHandler::log(std::string message, crow::LogLevel level)
 {
 	// Remove everthing up to the ']' character
@@ -19,31 +21,39 @@ void ExampleLogHandler::log(std::string message, crow::LogLevel level)
 
 std::string ExampleLogHandler::getLogPrefix(crow::LogLevel level)
 {	
-	std::stringstream outStringStr;
-	std::string prefix = "";
+	std::stringstream outStringStr, prefix;
 	
+	// Turn on colorization for outputs
+	termcolor::colorize(outStringStr);
+	termcolor::colorize(prefix);
+
+	// Generate the prefix
+	prefix << termcolor::cyan << boost::posix_time::second_clock::local_time() 
+		<< termcolor::reset << " ";
+
+	// Turn on colorization for outStringStr
 	termcolor::colorize(outStringStr);
 
 	// Colorize the output
 	switch (level)
 	{
 	case crow::LogLevel::Debug:
-		outStringStr << prefix << termcolor::green <<
+		outStringStr << prefix.str() << termcolor::green <<
 			"[ Debug   ] " << termcolor::reset;
 		break;
 
 	case crow::LogLevel::Info:
-		outStringStr << prefix << termcolor::green <<
+		outStringStr << prefix.str() << termcolor::green <<
 			"[ Info    ] " << termcolor::reset;
 		break;
 	
 	case crow::LogLevel::Warning:
-		outStringStr << prefix << termcolor::yellow <<
+		outStringStr << prefix.str() << termcolor::yellow <<
 			"[ Warning ] " << termcolor::reset;
 		break;
 
 	case crow::LogLevel::Error:
-		outStringStr << prefix << termcolor::red <<
+		outStringStr << prefix.str() << termcolor::red <<
 			"[ Error   ] " << termcolor::reset;
 		break;
 		

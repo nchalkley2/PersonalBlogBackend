@@ -8,9 +8,17 @@
 
 static std::string read_all(const std::string& filename)
 {
-	std::ifstream is(filename);
-    return {std::istreambuf_iterator<char>(is), 
-		std::istreambuf_iterator<char>()};
+	std::ifstream t(filename);
+	std::string str;
+
+	t.seekg(0, std::ios::end);   
+	str.reserve(t.tellg());
+	t.seekg(0, std::ios::beg);
+
+	str.assign((std::istreambuf_iterator<char>(t)),
+				std::istreambuf_iterator<char>());
+
+	return str;
 }
 
 namespace blog
