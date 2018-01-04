@@ -6,7 +6,7 @@
 
 #include <fstream>
 
-static std::string read_all(const std::string& filename)
+inline std::string read_all(const std::string& filename)
 {
 	std::ifstream t(filename);
 	std::string str;

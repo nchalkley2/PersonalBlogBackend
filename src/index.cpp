@@ -12,6 +12,16 @@ using namespace std;
 
 static string htmlroot = "www/html";
 
+static void applyTemplates(crow::mustache::context& x)
+{
+	std::string head, title;
+	head = read_all(htmlroot + "/template/head.html");
+	title = read_all(htmlroot + "/template/title.html");
+
+	x["head"] = head;
+	x["title"] = title;
+}
+
 void SetupIndexPage(crow::SimpleApp& app)
 {
 	auto indexFunc = []()
@@ -33,6 +43,7 @@ void SetupIndexPage(crow::SimpleApp& app)
 
 		crow::mustache::context x;
 		crow::mustache::template_t pageTemplate(read_all(htmlroot + "/index.html"));
+		applyTemplates(x);
 		x["posts"] = posts;
 
 		return pageTemplate.render(x);
@@ -49,7 +60,19 @@ void SetupIndexPage(crow::SimpleApp& app)
 	{
 		res.add_header("Content-Type", 
 				mimetype::getMimeType(htmlroot + "/posts/" + path));
-		res.body = read_all(htmlroot + "/posts/" + path);
+
+		if (mimetype::getMimeType(htmlroot + "/posts/" + path) == mimetype::getMimeType(".html"))
+		{
+			crow::mustache::context x;
+			crow::mustache::template_t pageTemplate(read_all(htmlroot + "/posts/" + path));
+			applyTemplates(x);
+
+			res.body = pageTemplate.render(x);
+		}
+		else
+		{
+			res.body = read_all(htmlroot + "/posts/" + path);
+		}
 		res.end();
 	});
 

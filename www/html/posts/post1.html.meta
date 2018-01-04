@@ -2,10 +2,16 @@
 	<div class="post">
 		<div class="post-text">
 			<a class="unstyled" href="/posts/post1.html"><h1>Creating the Davison Building Part 1</h1></a>
-		<a href="../../img/screenshot.jpg">
-			<img class="inline-text" src="../../img/screenshot.jpg" alt="Davison Building Render">
+		<a href="/img/screenshot.jpg">
+			<img class="inline-text" src="/img/screenshot.jpg" alt="Davison Building Render">
 		</a>
-		
 		<hr>
+		<h2>Background</h2>
+		<p class="fp">
+			<span class="sntc">This post is intended to provide an introspection into my workflow when I created the Davison building for the 3D-Atlanta project<sup class="citation" href="#cite_note-1"><a href="#cite_note-1">[1]</a></sup> at Georgia State University.</span> <br> <br>
+			<span class="sntc">I selected the Davison building as my first 3D Atlanta model because it was a simple building made with a few repeating elements, and because I was familiar with the building.</span> 
+			<span class="sntc">The building is still standing and it's right outside the Peachtree Marta Station.</span> 
+			<span class="sntc">I pass by it daily.</span> 
+		</p>
 	</div>
 </div>
