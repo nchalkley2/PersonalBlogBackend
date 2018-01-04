@@ -1,9 +1,9 @@
 #pragma once
 #include <cstring>
-#include <string>
-#include <map>
 #include <fstream>
 #include <iostream>
+#include <map>
+#include <string>
 #include <vector>
 
 namespace mimetype
@@ -19,7 +19,7 @@ namespace mimetype
 			{
 				// Load the mimetype file
 				std::ifstream is("/etc/mime.types");
-				
+
 				// Iterate over the file line by line
 				std::string line;
 				while (getline(is, line))
@@ -27,7 +27,7 @@ namespace mimetype
 					// If there is a hash in the line, then don't read that line
 					if (line.find('#') != std::string::npos)
 						continue;
-					
+
 					// Look for the tab char, its the file delimiter
 					// then split up the lines into key/value pairs
 					size_t pos;
@@ -35,11 +35,11 @@ namespace mimetype
 					{
 						std::string mimeType = line.substr(0, pos);
 						std::string fileType = line.substr(pos);
-					
-						// Strip the tabs from the filetype	
+
+						// Strip the tabs from the filetype
 						size_t tabpos;
-						while ((tabpos = fileType.find('\t')) 
-								!= std::string::npos)
+						while ((tabpos = fileType.find('\t'))
+							   != std::string::npos)
 						{
 							fileType = fileType.substr(tabpos + 1);
 						}
@@ -65,7 +65,8 @@ namespace mimetype
 			}
 
 		public:
-			static mimeTypes& getInst()
+			static mimeTypes&
+			getInst()
 			{
 				static mimeTypes mimeTypesInst;
 				return mimeTypesInst;
@@ -78,11 +79,12 @@ namespace mimetype
 		};
 	}
 
-	inline std::string getMimeType(std::string filePath)
+	inline std::string
+	getMimeType(std::string filePath)
 	{
 		size_t periodpos;
 		if ((periodpos = filePath.find('.')) != std::string::npos
-				&& periodpos + 1 < filePath.length())
+			&& periodpos + 1 < filePath.length())
 			filePath = filePath.substr(periodpos + 1);
 
 		detail::mimeTypes& mimeTypeInst = detail::mimeTypes::getInst();
