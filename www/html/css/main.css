@@ -367,8 +367,8 @@ div.sidebar-content
 div.content
 {
 	z-index: 1;
-	display: block;
-    float: left;
+	#display: block;
+    #float: left;
     //margin-left: 29.4118%;
     width: 100%;
 }
@@ -541,3 +541,34 @@ div.citation-div
 	z-index: 100;
 	font-size: 0.75em;
 }
+
+html,
+body {
+   margin:0;
+   padding:0;
+   height:100%;
+}
+#container {
+   min-height:100%;
+   position:relative;
+}
+#header {
+   background:#ff0;
+   padding:10px;
+}
+#body {
+   padding:10px;
+   padding-bottom:60px;   /* Height of the footer */
+}
+#footer {
+   position:absolute;
+   bottom:0;
+   width:100%;
+   height:60px;   /* Height of the footer */
+}
+
+div.footer-text
+{
+	text-align:center;
+}
+

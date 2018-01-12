@@ -13,6 +13,7 @@ static string htmlroot = "www/html";
 int
 main(int argc, char* argv[])
 {
+	// Use argh to parse arguments. We only have a port argument
 	argh::parser cmdl({ "-p", "--port" });
 	cmdl.parse(argc, argv);
 
@@ -21,6 +22,7 @@ main(int argc, char* argv[])
 
 	crow::SimpleApp app;
 
+	// Setup routing for the index page
 	SetupIndexPage(app);
 
 	app.loglevel(crow::LogLevel::Info);
@@ -28,5 +30,7 @@ main(int argc, char* argv[])
 	crow::logger::setHandler(LogHandler.get());
 
 	app.port(port).multithreaded().run();
+
+	return 0;
 }
 

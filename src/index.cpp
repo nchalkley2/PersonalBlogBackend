@@ -15,18 +15,16 @@ static string htmlroot = "www/html";
 static void
 applyTemplates(crow::mustache::context& x)
 {
-	std::string head, title;
-	head  = read_all(htmlroot + "/template/head.html");
-	title = read_all(htmlroot + "/template/title.html");
-
-	x["head"]  = head;
-	x["title"] = title;
+	x["head"]   = read_all(htmlroot + "/template/head.html");
+	x["title"] 	= read_all(htmlroot + "/template/title.html");
+	x["footer"] = read_all(htmlroot + "/template/footer.html");
 }
 
 void
 SetupIndexPage(crow::SimpleApp& app)
 {
-	auto indexFunc = []() {
+	auto indexFunc = []() 
+	{
 		using namespace boost::filesystem;
 
 		std::string posts;
@@ -52,6 +50,21 @@ SetupIndexPage(crow::SimpleApp& app)
 		return pageTemplate.render(x);
 	};
 
+	auto helloWorld = []() 
+	{
+		using namespace boost::filesystem;
+
+		crow::mustache::context x;
+		crow::mustache::template_t pageTemplate(
+			read_all(htmlroot + "/helloworld.html"));
+		applyTemplates(x);
+
+		return pageTemplate.render(x);
+	};
+
+	CROW_ROUTE(app, "/helloworld.html")
+	(helloWorld);
+
 	CROW_ROUTE(app, "/")
 	(indexFunc);
 
@@ -59,7 +72,8 @@ SetupIndexPage(crow::SimpleApp& app)
 	(indexFunc);
 
 	CROW_ROUTE(app, "/posts/<path>")
-	([](const crow::request& req, crow::response& res, std::string path) {
+	([](const crow::request& req, crow::response& res, std::string path) 
+	{
 		res.add_header("Content-Type",
 					   mimetype::getMimeType(htmlroot + "/posts/" + path));
 
@@ -81,7 +95,8 @@ SetupIndexPage(crow::SimpleApp& app)
 	});
 
 	CROW_ROUTE(app, "/css/<path>")
-	([](const crow::request& req, crow::response& res, std::string path) {
+	([](const crow::request& req, crow::response& res, std::string path) 
+	{
 		res.add_header("Content-Type",
 					   mimetype::getMimeType(htmlroot + "/css/" + path));
 		res.body = read_all(htmlroot + "/css/" + path);
@@ -89,7 +104,8 @@ SetupIndexPage(crow::SimpleApp& app)
 	});
 
 	CROW_ROUTE(app, "/img/<path>")
-	([](const crow::request& req, crow::response& res, std::string path) {
+	([](const crow::request& req, crow::response& res, std::string path) 
+	{
 		res.add_header("Content-Type",
 					   mimetype::getMimeType(htmlroot + "/img/" + path));
 		res.body = read_all(htmlroot + "/img/" + path);
@@ -97,7 +113,8 @@ SetupIndexPage(crow::SimpleApp& app)
 	});
 
 	CROW_ROUTE(app, "/js/<path>")
-	([](const crow::request& req, crow::response& res, std::string path) {
+	([](const crow::request& req, crow::response& res, std::string path) 
+	{
 		res.add_header("Content-Type",
 					   mimetype::getMimeType(htmlroot + "/js/" + path));
 		res.body = read_all(htmlroot + "/js/" + path);
@@ -105,7 +122,8 @@ SetupIndexPage(crow::SimpleApp& app)
 	});
 
 	CROW_ROUTE(app, "/resume.pdf")
-	([](const crow::request& req, crow::response& res) {
+	([](const crow::request& req, crow::response& res)
+	 {
 		res.add_header("Content-Type",
 					   mimetype::getMimeType(htmlroot + "/resume.pdf"));
 		res.body = read_all(htmlroot + "/resume.pdf");

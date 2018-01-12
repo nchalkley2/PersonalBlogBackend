@@ -24,6 +24,7 @@ read_all(const std::string& filename)
 
 namespace blog
 {
-	using namespace std;
+using namespace std;
+
 };
 

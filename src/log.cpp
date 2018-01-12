@@ -40,22 +40,26 @@ ExampleLogHandler::getLogPrefix(crow::LogLevel level)
 	switch (level)
 	{
 	case crow::LogLevel::Debug:
-		outStringStr << prefix.str() << termcolor::green << "[ Debug   ] "
+		outStringStr << prefix.str() << termcolor::green 
+					 << "[  Debug  ] "
 					 << termcolor::reset;
 		break;
 
 	case crow::LogLevel::Info:
-		outStringStr << prefix.str() << termcolor::green << "[ Info    ] "
+		outStringStr << prefix.str() << termcolor::green 
+					 << "[  Info   ] "
 					 << termcolor::reset;
 		break;
 
 	case crow::LogLevel::Warning:
-		outStringStr << prefix.str() << termcolor::yellow << "[ Warning ] "
+		outStringStr << prefix.str() << termcolor::yellow 
+					 << "[ Warning ] "
 					 << termcolor::reset;
 		break;
 
 	case crow::LogLevel::Error:
-		outStringStr << prefix.str() << termcolor::red << "[ Error   ] "
+		outStringStr << prefix.str() << termcolor::red 
+					 << "[  Error  ] "
 					 << termcolor::reset;
 		break;
 

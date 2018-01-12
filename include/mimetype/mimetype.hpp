@@ -8,87 +8,83 @@
 
 namespace mimetype
 {
-	namespace detail
+namespace detail
+{
+class mimeTypes
+{
+private:
+	std::map<std::string, std::string> mimeMap;
+
+	mimeTypes()
 	{
-		class mimeTypes
+		// Load the mimetype file
+		std::ifstream is("/etc/mime.types");
+
+		// Iterate over the file line by line
+		std::string line;
+		while (getline(is, line))
 		{
-		private:
-			std::map<std::string, std::string> mimeMap;
+			// If there is a hash in the line, then don't read that line
+			if (line.find('#') != std::string::npos)
+				continue;
 
-			mimeTypes()
+			// Look for the tab char, its the file delimiter
+			// then split up the lines into key/value pairs
+			size_t pos;
+			if ((pos = line.find('\t')) != std::string::npos)
 			{
-				// Load the mimetype file
-				std::ifstream is("/etc/mime.types");
+				std::string mimeType = line.substr(0, pos);
+				std::string fileType = line.substr(pos);
 
-				// Iterate over the file line by line
-				std::string line;
-				while (getline(is, line))
+				// Strip the tabs from the filetype
+				size_t tabpos;
+				while ((tabpos = fileType.find('\t')) != std::string::npos)
 				{
-					// If there is a hash in the line, then don't read that line
-					if (line.find('#') != std::string::npos)
-						continue;
+					fileType = fileType.substr(tabpos + 1);
+				}
 
-					// Look for the tab char, its the file delimiter
-					// then split up the lines into key/value pairs
-					size_t pos;
-					if ((pos = line.find('\t')) != std::string::npos)
-					{
-						std::string mimeType = line.substr(0, pos);
-						std::string fileType = line.substr(pos);
+				// Tokenize the filetype into an array
+				std::vector<std::string> fileTypes;
+				char fileTypeStr[fileType.size()];
+				std::strcpy(fileTypeStr, fileType.c_str());
+				char* token = std::strtok(fileTypeStr, " ");
+				while (token != nullptr)
+				{
+					fileTypes.push_back(std::string(token));
+					token = strtok(NULL, " ");
+				}
 
-						// Strip the tabs from the filetype
-						size_t tabpos;
-						while ((tabpos = fileType.find('\t'))
-							   != std::string::npos)
-						{
-							fileType = fileType.substr(tabpos + 1);
-						}
-
-						// Tokenize the filetype into an array
-						std::vector<std::string> fileTypes;
-						char fileTypeStr[fileType.size()];
-						std::strcpy(fileTypeStr, fileType.c_str());
-						char* token = std::strtok(fileTypeStr, " ");
-						while (token != nullptr)
-						{
-							fileTypes.push_back(std::string(token));
-							token = strtok(NULL, " ");
-						}
-
-						// Now we can finally map the file type to the mime type
-						for (auto& fileType : fileTypes)
-						{
-							mimeMap[fileType] = mimeType;
-						}
-					}
+				// Now we can finally map the file type to the mime type
+				for (auto& fileType : fileTypes)
+				{
+					mimeMap[fileType] = mimeType;
 				}
 			}
-
-		public:
-			static mimeTypes&
-			getInst()
-			{
-				static mimeTypes mimeTypesInst;
-				return mimeTypesInst;
-			}
-
-			const std::string operator[](std::string index)
-			{
-				return mimeMap[index];
-			};
-		};
+		}
 	}
 
-	inline std::string
-	getMimeType(std::string filePath)
+public:
+	static mimeTypes&
+	getInst()
 	{
-		size_t periodpos;
-		if ((periodpos = filePath.find('.')) != std::string::npos
-			&& periodpos + 1 < filePath.length())
-			filePath = filePath.substr(periodpos + 1);
-
-		detail::mimeTypes& mimeTypeInst = detail::mimeTypes::getInst();
-
-		return mimeTypeInst[filePath];
+		static mimeTypes mimeTypesInst;
+		return mimeTypesInst;
 	}
+
+	const std::string operator[](std::string index) { return mimeMap[index]; };
+};
+}
+
+inline std::string
+getMimeType(std::string filePath)
+{
+	size_t periodpos;
+	if ((periodpos = filePath.find('.')) != std::string::npos
+		&& periodpos + 1 < filePath.length())
+		filePath = filePath.substr(periodpos + 1);
+
+	detail::mimeTypes& mimeTypeInst = detail::mimeTypes::getInst();
+
+	return mimeTypeInst[filePath];
+}
 }
